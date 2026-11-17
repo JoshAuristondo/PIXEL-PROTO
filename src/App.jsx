@@ -1,5 +1,5 @@
 import { useState, Suspense, lazy, useEffect } from 'react';
-import { Route, Link, Router, Switch, useLocation } from 'wouter';
+import { Route, Link, Router, Switch, useLocation, Redirect } from 'wouter';
 
 //Components
 import Menus from './components/menus/menus';
@@ -13,6 +13,7 @@ import Locations from './routes/locations';
 import Contact from './routes/contact';
 import Catalog from './routes/catalog';
 import Policy from './routes/policy';
+import Faq from './routes/faq';
 import Product from './routes/product';
 import Cart from './routes/cart';
 import Checkout from './routes/checkout';
@@ -73,8 +74,12 @@ function App() {
           {/* Panel interno (POS, logística, inventario, claves, auditoría…) */}
           <Route path={"/admin/:rest*"} component={AdminRoot} />
 
-          {/* Policy */}
+          {/* Ayuda y políticas */}
+          <Route path={"/faq"} component={Faq} />
+          <Route path={"/policy"} component={Policy} />
           <Route path={"/policy/:type"} component={Policy} />
+          <Route path={"/catalog"}><Redirect to="/" /></Route>
+          <Route path={"/orders"}><Redirect to="/account" /></Route>
 
           {/* 404 */}
           <Route component={NotFound} />

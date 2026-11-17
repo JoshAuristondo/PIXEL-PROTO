@@ -1,58 +1,71 @@
-import { useEffect, useState } from "react";
+import { Link } from "wouter";
 import Loader from '../components/loader/loader';
 import Hero from "../components/hero/hero";
-import { useLocation } from 'wouter';
+import { POLICIES, POLICY_ORDER, POLICY_UPDATED } from "../store/policies";
 import "../styles/policy.scss";
 
-const policyContent = 
-{
-    "guarantee": {
-        h1: "Política / Terminos de Garantía",
-        hero_title: "POLÍTICA DE GARANTÍA",
-        hero_body: "Aquí van los términos y condiciones sobre la garantía de nuestros productos físicos y digitales..."
-    },
-    "shipping": {
-        h1: "Política / Terminos de Envío",
-        hero_title: "POLÍTICA DE ENVIOS",
-        hero_body: "Información sobre tiempos de entrega, costos de despacho y zonas de cobertura..."
-    },
-    "changes": {
-        h1: "Política / Terminos de Cambios",
-        hero_title: "POLÍTICA DE CAMBIOS",
-        hero_body: "Condiciones para realizar cambios de juegos físicos, consolas o accesorios..."
-    },
-    "returns": {
-        h1: "Política / Terminos de Devoluciones",
-        hero_title: "POLÍTICA DE DEVOLUCIONES",
-        hero_body: "Pasos y requisitos para solicitar el reembolso de tu dinero..."
-    },
-    "privacy": {
-        h1: "Política / Terminos de Privacidad",
-        hero_title: "POLÍTICA DE PRIVACIDAD",
-        hero_body: "Cómo Pixel Gamers protege y maneja tus datos personales..."
-    },
-    "cookies": {
-        h1: "Política / Terminos de Cookies",
-        hero_title: "POLÍTICA DE COOKIES",
-        hero_body: "Información sobre las cookies que utilizamos en nuestro sitio web para mejorar tu experiencia..."
-    }
+const fallback = {
+    h1: "Políticas",
+    hero_title: "POLÍTICAS Y TÉRMINOS",
+    hero_body: "Selecciona una política para ver la información.",
 };
 
-const Policy = ({params}) => {
+const Policy = ({ params }) => {
 
     const currentType = params?.type;
-
-    const content = policyContent[currentType] || {
-        h1: "Política/Terminos",
-        hero_title: "Políticas",
-        hero_body: "Selecciona una política desde el menú para ver la información."
-    };
+    const policy = POLICIES[currentType];
+    const content = policy || fallback;
 
     return (
         <>
             <div className="policy">
                 <div className="policy__container policy__container--hero">
                     <Hero header={content.h1} title={content.hero_title} body={content.hero_body} />
+                </div>
+
+                <div className="policy__layout">
+
+                    <nav className="policy__nav" aria-label="Políticas">
+                        {POLICY_ORDER.map((key) => (
+                            <Link key={key} href={`/policy/${key}`} className={`policy__nav-link ${key === currentType ? "policy__nav-link--active" : ""}`}>
+                                {POLICIES[key].short}
+                            </Link>
+                        ))}
+                        <Link href="/faq" className="policy__nav-link">Preguntas frecuentes</Link>
+                        <Link href="/contact" className="policy__nav-link">Contacto</Link>
+                    </nav>
+
+                    <div className="policy__content">
+                        {policy ? (
+                            <>
+                                <p className="policy__updated">Última actualización: {POLICY_UPDATED} · Texto demostrativo del prototipo</p>
+                                {policy.sections.map((s) => (
+                                    <section key={s.h} className="policy__section">
+                                        <h2 className="policy__section-title">{s.h}</h2>
+                                        {s.p?.map((t) => <p key={t} className="policy__text">{t}</p>)}
+                                        {s.ul && (
+                                            <ul className="policy__list">
+                                                {s.ul.map((t) => <li key={t}>{t}</li>)}
+                                            </ul>
+                                        )}
+                                    </section>
+                                ))}
+                                <p className="policy__text policy__text--foot">
+                                    ¿Dudas sobre esta política? <Link href="/contact" className="policy__inline-link">Escríbenos</Link> o revisa las <Link href="/faq" className="policy__inline-link">preguntas frecuentes</Link>.
+                                </p>
+                            </>
+                        ) : (
+                            <div className="policy__index">
+                                {POLICY_ORDER.map((key) => (
+                                    <Link key={key} href={`/policy/${key}`} className="policy__card">
+                                        <strong>{POLICIES[key].hero_title}</strong>
+                                        <span>{POLICIES[key].hero_body}</span>
+                                    </Link>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
                 </div>
             </div>
 

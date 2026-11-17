@@ -50,6 +50,8 @@ const Menus = () => {
                         <HamburgerLink to={`/demo`} name={"Guía del prototipo"} childen={""} />
                         <HamburgerLink to={`/locations`} name={"Ubicaciones"} childen={""} />
                         <HamburgerLink to={`/about`} name={"Acerca de Nosotros"} childen={""} />
+                        <HamburgerLink to={`/faq`} name={"Preguntas frecuentes"} childen={""} />
+                        <HamburgerLink to={`/policy`} name={"Políticas y términos"} childen={""} />
                         <HamburgerLink to={`/contact`} name={"Contacto"} childen={""} />
 
                     </ul>

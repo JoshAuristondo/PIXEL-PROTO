@@ -88,6 +88,11 @@ export function StoreProvider({ children }) {
             updateProfile: (userId, patch) => d('UPDATE_PROFILE', { userId, patch }),
             changePassword: (userId, password) => d('CHANGE_PASSWORD', { userId, password }),
             subscribe: (email, value, branchId) => d('SUBSCRIBE', { email, value, branchId }),
+            sendContact(contact) {
+                const ticket = `TK-${String(Date.now()).slice(-6)}`;
+                d('CONTACT_SEND', { contact, ticket });
+                return ticket;
+            },
 
             addToCart: (productId, qty = 1) => d('CART_ADD', { productId, qty }),
             setQty: (productId, qty) => d('CART_QTY', { productId, qty }),

@@ -7,23 +7,27 @@ const AccountLinks =
     [
         {
             name: "Mi Cuenta",
-            to: "/account/"
+            to: "/account"
         },
         {
             name: "Mi Carrito",
-            to: "/cart/"
+            to: "/cart"
         },
         {
             name: "Mis Pedidos",
-            to: "/orders/"
+            to: "/account"
         },
         {
-            name: "Mis Favoritos",
-            to: "/favorites/"
+            name: "Seguimiento de Envíos",
+            to: "/tracking"
         }
     ]
 
 const PolicyLinks = [
+    {
+        name: "Términos y Condiciones",
+        to: "/policy/terms"
+    },
     {
         name: "Política de Garantía",
         to: "/policy/guarantee"
@@ -70,11 +74,23 @@ const StoreLinks =
     [
         {
             name: "Cátalogo",
-            to: "/catalog/"
+            to: "/"
         },
         {
             name: "Tiendas Fisicas",
-            to: "/locations/"
+            to: "/locations"
+        },
+        {
+            name: "Acerca de Nosotros",
+            to: "/about"
+        },
+        {
+            name: "Preguntas Frecuentes",
+            to: "/faq"
+        },
+        {
+            name: "Contacto",
+            to: "/contact"
         }
     ]
 
@@ -154,7 +170,7 @@ const InternalLink = ({ name, to }) => {
 const ExternalLink = ({ name, to }) => {
     return (
         <li className="footer__li">
-            <a className="footer__link" href={to} target="_blank">
+            <a className="footer__link" href={to} target="_blank" rel="noopener noreferrer">
                 {name}
             </a>
         </li>

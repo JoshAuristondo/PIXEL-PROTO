@@ -90,6 +90,14 @@ const handlers = {
         return s;
     },
 
+    CONTACT_SEND(s, a) {
+        const c = a.contact;
+        const ref = a.ticket;
+        mail(s, a.ts, 'soporte@pixelgamers.cl', 'Contacto', `[${ref}] ${c.reason} — ${c.name}`, `De: ${c.name} <${c.email}>${c.orderId ? `\nOrden: ${c.orderId}` : ''}\n\n${c.message}`);
+        mail(s, a.ts, c.email, 'Contacto', `Recibimos tu mensaje (${ref})`, `Hola ${c.name}, recibimos tu mensaje sobre "${c.reason}". Un ejecutivo te responderá en un máximo de 1 día hábil. Tu número de ticket es ${ref}.`);
+        return s;
+    },
+
     /* ---------- carrito ---------- */
     CART_ADD(s, a) {
         const p = getProduct(s, a.productId);
