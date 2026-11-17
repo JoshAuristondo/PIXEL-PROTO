@@ -4,6 +4,9 @@ import "../../styles/navbar.scss";
 import "../../styles/hamburger.scss";
 
 import Pixel from "../../assets/pixel.png";
+import "../../styles/shop.scss";
+import { useStore } from "../../store/StoreContext";
+import { sum } from "../../store/utils";
 
 
 const Menus = () => {
@@ -11,6 +14,11 @@ const Menus = () => {
     const [isHamburgerOpen, setOpenHamburger] = useState(false);
 
     const toggleHamburger = () => setOpenHamburger((prev) => !prev);
+
+    const { state, user, api } = useStore();
+    const [, navigate] = useLocation();
+    const cartCount = sum(state.cart.items, (i) => i.qty);
+    const isStaff = user && user.role !== 'comprador';
 
     return (
         <>
@@ -33,6 +41,13 @@ const Menus = () => {
                             </p>
                         </li>
 
+                        <HamburgerLink to={`/`} name={"Catálogo"} childen={""} />
+                        <HamburgerLink to={`/cart`} name={"Carrito"} childen={""} />
+                        <HamburgerLink to={`/tracking`} name={"Seguimiento de envíos"} childen={""} />
+                        <HamburgerLink to={`/account`} name={"Mi cuenta y bóveda"} childen={""} />
+                        <HamburgerLink to={`/outbox`} name={"Correo simulado"} childen={""} />
+                        {isStaff && <HamburgerLink to={`/admin/dashboard`} name={"Panel interno"} childen={""} />}
+                        <HamburgerLink to={`/demo`} name={"Guía del prototipo"} childen={""} />
                         <HamburgerLink to={`/locations`} name={"Ubicaciones"} childen={""} />
                         <HamburgerLink to={`/about`} name={"Acerca de Nosotros"} childen={""} />
                         <HamburgerLink to={`/contact`} name={"Contacto"} childen={""} />
@@ -59,8 +74,22 @@ const Menus = () => {
 
                         <li className="navbar__item navbar__item--links">
                             <div className="navbar__buttons">
-                                <NavbarLink name={"Log-In"} to={"/login"} childen={""} />
-                                <NavbarLink name={"Sign-Up"} to={"/signup"} childen={""} />
+                                <Link className="nav-cart" href="/cart" aria-label="Carrito">
+                                    🛒 {cartCount > 0 && <span className="nav-cart__count">{cartCount}</span>}
+                                </Link>
+
+                                {user ? (
+                                    <>
+                                        <span className="nav-user">{user.name.split(' ')[0]}</span>
+                                        <NavbarLink name={isStaff ? "Panel" : "Cuenta"} to={isStaff ? "/admin/dashboard" : "/account"} childen={""} />
+                                        <button className="navbar__link navbar__link--button" style={{ cursor: "pointer" }} onClick={() => { api.logout(); navigate("/"); }}>Salir</button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <NavbarLink name={"Log-In"} to={"/login"} childen={""} />
+                                        <NavbarLink name={"Sign-Up"} to={"/signup"} childen={""} />
+                                    </>
+                                )}
 
                                 {/* Hamburger */}
                                 <button onClick={toggleHamburger} className="navbar__button navbar__button--hamburger">

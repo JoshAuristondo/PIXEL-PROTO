@@ -1,0 +1,360 @@
+ID,Historia de Usuario,Talla,Fibonacci
+HU-ADM-1,"Como Administrador de Negocio, quiero registrar y gestionar las cuentas de usuarios administrativos (Vendedores, Supervisores Logísticos, TI), para otorgar acceso al personal autorizando sus funciones.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Formulario de alta exige asignación de Rol, Sucursal, Nombre completo, RUT e Email corporativo.",Requisito Funcional (RF-12 / RNF-23),
+CA-2,Envía invitación por correo al nuevo empleado para la creación de su contraseña inicial.,Requisito No Funcional (RNF-18),
+CA-3,Mantiene registro histórico de todas las cuentas administrativas creadas y sus modificaciones.,Requisito No Funcional (RNF-33),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-ADM-2,"Como Administrador de Negocio, quiero configurar matrices de roles y permisos de acceso granulares (RBAC), para asegurar que cada empleado acceda exclusivamente a los módulos requeridos.",M,5
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Permite activar o desactivar permisos específicos (Crear, Leer, Actualizar, Borrar) por cada módulo del sistema.",Requisito No Funcional (RNF-23),
+CA-2,Garantiza que los Vendedores no puedan modificar precios ni acceder a claves encriptadas en lote.,Requisito No Funcional (RNF-22),
+CA-3,Los cambios en los permisos se aplican de forma inmediata en la sesión del usuario afectado.,Requisito No Funcional (RNF-24),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-ADM-5,"Como Administrador de Negocio, quiero exigir el uso de contraseñas de alta complejidad y autenticación de dos factores (2FA) para roles administrativos, para blindar el acceso a la plataforma.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Política exige contraseñas de mínimo 12 caracteres, mayúsculas, minúsculas, números y símbolos.",Requisito No Funcional (RNF-23),
+CA-2,Configura la obligación de enrolar app autenticadora (Google Authenticator/Authy) para login administrativo.,Requisito No Funcional (RNF-23),
+CA-3,Forzará la expiración y cambio de contraseña cada 90 días calendario.,Requisito No Funcional (RNF-20),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-ADM-6,"Como Administrador de Negocio, quiero vincular y asignar usuarios a sucursal(es) física(s) específica(s), para delimitar sus privilegios operativos según su sede de trabajo.",S,2
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Permite seleccionar una o múltiples tiendas físicas a las que estará restringido un Vendedor o Supervisor.,Regla de Negocio / Sucursal,
+CA-2,Impide que un vendedor opere la caja registradora de una sucursal a la que no está asignado.,Requisito No Funcional (RNF-33),
+CA-3,Facilita la reasignación temporal de personal entre tiendas físicas ante reemplazos.,Requisito Funcional (RF-7),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-ADM-9,"Como Administrador de Negocio, quiero dar de alta nuevas sucursales físicas y configurar sus parámetros comerciales en el sistema, para respaldar la expansión del negocio.",M,5
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Formulario de alta de sucursal registra Nombre, Dirección, Teléfono, Comuna y Cajas POS autorizadas.",Requisito No Funcional (RNF-33),
+CA-2,Crea automáticamente la bodega virtual asociada a la nueva sucursal para gestión de inventarios.,Requisito No Funcional (RNF-42),
+CA-3,Integra la nueva tienda en la matriz global de stock y opciones de retiro en web.,Requisito Funcional (RF-6),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-ADM-3,"Como Administrador de Negocio, quiero desactivar de forma inmediata la cuenta de cualquier empleado desvinculado, para revocar todos sus accesos de manera instantánea.",XS,2
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Botonera de acción rápida en la lista de usuarios permite cambiar estado a 'Inactivo' con un clic.,Regla de Negocio / Desactivación,
+CA-2,Cierra automáticamente cualquier sesión activa del usuario en el POS o panel web en < 1 segundo.,Requisito No Funcional (RNF-23),
+CA-3,Impide el inicio de sesión del usuario revocado mostrando un mensaje de cuenta suspendida.,Requisito No Funcional (RNF-05),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-ADM-7,"Como Administrador de Negocio, quiero realizar el reseteo administrativo de credenciales y desbloquear cuentas suspendidas, para restablecer el acceso a personal bloqueado.",XS,2
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Permite generar una clave temporal de un solo uso para empleados con cuenta bloqueada.,Requisito No Funcional (RNF-23),
+CA-2,Exige el cambio obligatorio de la clave temporal en el primer inicio de sesión del usuario.,Requisito No Funcional (RNF-18),
+CA-3,Registra el evento de reseteo administrativo en la bitácora de auditoría indicando el autor.,Requisito No Funcional (RNF-24),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-COM-11,"Como Comprador, quiero registrarme e iniciar sesión con credenciales seguras, para guardar mis datos de envío y preferencias de compra.",S,2
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Formulario exige campos válidos: Nombre, RUT/DNI, Email único, Teléfono y Contraseña segura.",Requisito Funcional (RF-12),
+CA-2,Almacena contraseñas bajo hash seguro (Argon2 / bcrypt) con salado individual.,Requisito No Funcional (RNF-23),
+CA-3,Permite inicio de sesión rápido con OAuth 2.0 (Google / Facebook / Apple ID).,Requisito No Funcional (RNF-20),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-VEN-12,"Como Vendedor de Tienda, quiero autenticarme en la terminal POS con mi usuario individual, para registrar la responsabilidad de cada transacción procesada.",S,2
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Exige login individual con credencial y PIN rápido de 4 dígitos para cajeros.,Requisito No Funcional (RNF-23),
+CA-2,Bloquea la terminal POS tras 3 minutos de inactividad de uso en mostrador.,Requisito No Funcional (RNF-24),
+CA-3,Registra el ID del vendedor en cada boleta y movimiento de inventario realizado.,Requisito No Funcional (RNF-05),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-COM-13,"Como Comprador, quiero solicitar la recuperación de mi contraseña mediante un enlace verificado por correo, para restablecer mi acceso de forma segura.",S,2
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Envía un token criptográfico de recuperación al correo registrado con validez de 15 minutos.,Regla de Negocio / RNF-22,
+CA-2,El enlace expira inmediatamente tras ser utilizado una vez para cambiar la clave.,Requisito No Funcional (RNF-10),
+CA-3,No revela si el correo ingresado existe o no en el sistema por motivos de seguridad.,Requisito No Funcional (RNF-22),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-INV-3,"Como Supervisor Logístico, quiero registrar el ingreso de reabastecimientos de mercadería física por proveedor y sucursal, para mantener actualizado el stock físico.",M,5
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Ingresa órdenes de recepción asociadas a factura de proveedor sumando unidades a bodega.,Requisito Funcional (RF-9),
+CA-2,Actualiza inmediatamente la disponibilidad global en el catálogo web y sucursales físicas.,Requisito No Funcional (RNF-08),
+CA-3,Imprime guía de recepción interna con firma de responsabilidad del bodeguero.,Requisito Funcional (RF-6),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-INV-1,"Como Supervisor Logístico, quiero realizar cargas masivas de lotes de licencias digitales mediante archivos CSV o JSON, para poblar el inventario virtual.",M,5
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Procesa archivos masivos validando la estructura del SKU, formato de clave y duplicados en < 5s.",Requisito Funcional (RF-18 / RNF-22),
+CA-2,Encripta automáticamente las claves con algoritmo AES-256 antes de guardarlas en base de datos.,Requisito No Funcional (RNF-22),
+CA-3,Genera un reporte de carga indicando registros exitosos y fallidos con su detalle de error.,Requisito No Funcional (RNF-12),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-INV-4,"Como Supervisor Logístico, quiero configurar el umbral de stock crítico y reorden automático por SKU, para prevenir el desabastecimiento de juegos populares.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Permite definir el mínimo de unidades permitidas para cada producto físico por tienda.,Requisito Funcional (RF-10),
+CA-2,Emite alertas por correo y notificación en panel cuando el inventario cruce el umbral mínimo.,Requisito Funcional (RF-10),
+CA-3,Sugiere automáticamente la cantidad de unidades a pedir al proveedor según velocidad de venta.,Requisito No Funcional (RNF-02),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-VEN-1,"Como Vendedor de Tienda, quiero consultar el stock disponible en tiempo real en las 3 sucursales y la tienda web, para orientar al cliente presencial.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Despliega matriz de stock diferenciada por tienda física (Sucursal 1, 2, 3) y bodega e-commerce.",Requisito Funcional (RF-6),
+CA-2,La consulta responde en un tiempo máximo de 1.0 segundo desde la interfaz del POS.,Requisito No Funcional (RNF-15),
+CA-3,Indica si hay unidades en tránsito o reservadas en otras tiendas.,Requisito No Funcional (RNF-02),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-COM-1,"Como Comprador, quiero navegar y filtrar los videojuegos por consola, género y rango de precio, para encontrar rápidamente los títulos de mi interés.",M,5
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Permite aplicar filtros combinados (PS5, Xbox, Switch, PC, Rango Precio) refrescando catálogo en menos de 1.5 segundos.",Requisito Funcional (RF-3 / RNF-20),
+CA-2,Muestra contador exacto de resultados encontrados y botón para limpiar todos los filtros aplicados.,Requisito Funcional (RF-5),
+CA-3,"Si no hay resultados que coincidan, muestra sugerencias de títulos populares alternativos.",Regla de Negocio / Usabilidad (RNF-13),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-COM-2,"Como Comprador, quiero visualizar la ficha técnica detallada de cada producto con imágenes y tráilers, para evaluar los juegos antes de comprarlos.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Despliega ficha completa con sinopsis, idioma de voces/subtítulos, clasificación de edad y tráiler de YouTube.",Requisito Funcional (RF-1 / RF-2),
+CA-2,Muestra disponibilidad de stock diferenciada para edición física (por tienda) y digital.,Requisito Funcional (RF-6),
+CA-3,Las imágenes de alta resolución cargan de forma diferida (lazy loading) sin degradar el rendimiento.,Requisito No Funcional (RNF-30),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-VEN-8,"Como Vendedor de Tienda, quiero buscar productos rápidamente escaneando su código de barras o SKU, para agilizar la atención en fila.",XS,2
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Soporta lectores de código de barras USB/Bluetooth estándar cargando el producto en < 0.3s.,Requisito Funcional (RF-1),
+CA-2,"Si el código no existe, emite un pitido de error y abre la búsqueda manual por nombre.",Requisito No Funcional (RNF-15),
+CA-3,Permite sumar unidades automáticamente con cada escaneo sucesivo del mismo producto.,Requisito Funcional (RF-4),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-INV-2,"Como Supervisor Logístico, quiero auditar las claves digitales almacenadas verificando que estén encriptadas y sin duplicaciones, para garantizar la seguridad del inventario virtual.",M,5
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Modulo de auditoría ejecuta escaneo de integridad detectando códigos expuestos o corruptos.,Requisito Funcional (RF-19),
+CA-2,"Muestra resumen de claves: Disponibles, Asignadas, Revocadas y Corruptas por SKU.",Requisito Funcional (RF-21),
+CA-3,Bloquea automáticamente cualquier lote que presente inconsistencias en su firma criptográfica.,Requisito No Funcional (RNF-07),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-INV-13,"Como Supervisor Logístico, quiero gestionar el catálogo de proveedores de consolas y distribuidores oficiales, para centralizar las órdenes de compra de reabastecimiento.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Mantenedor CRUD de proveedores (RUT, Razón Social, Contacto, Tiempos de Entrega).",Requisito Funcional (RF-1),
+CA-2,Asocia productos del catálogo a sus proveedores principales y alternativos.,Requisito No Funcional (RNF-12),
+CA-3,Registra evaluación de cumplimiento de entregas por parte de cada proveedor.,Requisito No Funcional (RNF-23),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-VEN-2,"Como Vendedor de Tienda, quiero registrar ventas presenciales en el punto de venta (POS) con actualización inmediata de inventario, para procesar transacciones en caja.",M,5
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Permite agregar productos escaneando código de barras o búsqueda rápida por SKU.,Requisito Funcional (RF-7),
+CA-2,Descuenta el stock físico local de inmediato en la base de datos al presionar 'Finalizar Venta'.,Requisito No Funcional (RNF-14),
+CA-3,"Admite múltiples medios de pago combinados (Efectivo, Tarjeta Débito/Crédito, Transferencia).",Requisito No Funcional (RNF-07),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-VEN-4,"Como Vendedor de Tienda, quiero emitir e imprimir boletas o vales de venta desde la terminal de caja, para entregar comprobantes físicos al cliente.",XS,2
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Envía la orden de impresión a la impresora térmica local en menos de 2 segundos.,Requisito No Funcional (RNF-39),
+CA-2,Registra el folio de la boleta electrónica asociada al Servicio de Impuestos Internos.,Requisito Funcional (RF-16),
+CA-3,Imprime código QR para verificación tributaria y clave de devolución.,Requisito No Funcional (RNF-04),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-VEN-13,"Como Vendedor de Tienda, quiero realizar el arqueo y cierre diario de caja comparando efectivo y vales de tarjeta, para cuadrar los ingresos de mi turno.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Genera el reporte Z de cierre de caja sumando ventas por medio de pago (Efectivo, Débito, Crédito).",Regla de Negocio / Contabilidad,
+CA-2,Registra sobrantes o faltantes de dinero solicitando clave del administrador para cuadres con descalce.,Requisito No Funcional (RNF-09),
+CA-3,Envía el resumen del cierre contable al correo del Administrador al cerrar turno.,Requisito No Funcional (RNF-39),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-VEN-5,"Como Vendedor de Tienda, quiero verificar la disponibilidad e imprimir/enviar códigos de licencias digitales vendidas en mostrador, para atender compras digitales en tienda física.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Al cobrar un juego digital en caja, desacopla y asigna una clave de la base central encriptada.",Requisito Funcional (RF-19),
+CA-2,Imprime la clave digital en el voucher físico o la envía al correo del cliente instantáneamente.,Requisito Funcional (RF-20),
+CA-3,La clave entregada queda marcada como 'Entregada en Tienda' en la bitácora de auditoría.,Requisito No Funcional (RNF-22),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-COM-3,"Como Comprador, quiero agregar productos físicos y licencias digitales a un carrito de compras unificado, para realizar una sola transacción de pago.",M,5
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"El carrito calcula subtotal, impuestos y costo estimado de despacho de manera dinámica.",Requisito Funcional (RF-13),
+CA-2,Reserva el stock del producto físico en bodega durante 15 minutos mientras el comprador está en checkout.,Regla de Negocio (RNF-25),
+CA-3,Permite modificar cantidades o eliminar ítems sin perder la sesión de compra.,Requisito Funcional (RF-11),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-COM-4,"Como Comprador, quiero pagar de forma segura mediante pasarelas de pago integradas (Webpay / MercadoPago), para completar mi compra de manera confiable.",L,8
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Soporta tarjetas de débito, crédito y transferencias bancarias con encriptación TLS 1.3.",Requisito No Funcional (RNF-10 / RNF-21),
+CA-2,"Si el pago es rechazado, libera inmediatamente la reserva de stock y notifica al cliente la causa.",Requisito Funcional (RF-14 / RF-15),
+CA-3,"Al confirmarse el pago, genera una orden de compra única con estado 'Pagado' en menos de 3 segundos.",Requisito Funcional (RF-15 / RNF-20),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-COM-5,"Como Comprador, quiero recibir una boleta electrónica automática por correo electrónico, para respaldar legalmente mi compra.",S,2
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Genera el documento tributario electrónico (PDF y XML) adjunto en el correo de confirmación.,Requisito Funcional (RF-16),
+CA-2,El correo se envía en un lapso no mayor a 30 segundos posterior a la autorización del pago.,Requisito No Funcional (RNF-18),
+CA-3,La boleta incluye el desglose detallado de impuestos (IVA 19%) y números de serie de productos.,Regla de Negocio / Tributaria (RNF-39),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-VEN-3,"Como Vendedor de Tienda, quiero reservar stock temporalmente para clientes que soliciten compras telefónicas, para asegurar el producto durante 24 horas.",M,5
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Genera una orden de reserva asociada al RUT y teléfono del cliente presencial/telefónico.,Requisito Funcional (RF-6 / RF-11),
+CA-2,El stock reservado queda bloqueado para venta web y otras sucursales por exactamente 24 horas.,Regla de Negocio / 24 Horas,
+CA-3,"Si la reserva no se concreta en 24 horas, el sistema libera automáticamente el stock a inventario disponible.",Requisito No Funcional (RNF-24),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-VEN-14,"Como Vendedor de Tienda, quiero emitir e imprimir cotizaciones formales para clientes presenciales, para ofrecer presupuestos válidos por tiempo determinado.",S,2
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Genera un documento PDF de cotización con vigencia de 5 días hábiles y congelamiento de precio.,Requisito Funcional (RF-1),
+CA-2,Permite convertir la cotización directamente en venta presencial recuperando el folio.,Requisito Funcional (RF-20),
+CA-3,La cotización no reserva stock físico hasta convertirse en venta o reserva formal.,Requisito No Funcional (RNF-18),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-COM-6,"Como Comprador, quiero recibir de forma inmediata y automática mis claves digitales por correo y en mi perfil, para activar mis juegos de inmediato.",M,5
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Envía la clave digital encriptada al correo y la hace visible en el panel del cliente tras el pago autorizado.,Requisito Funcional (RF-20),
+CA-2,Cada clave digital es asignada de forma única e irreversible desde la base de claves desencriptadas.,Requisito Funcional (RF-19),
+CA-3,"La clave en pantalla incluye instrucciones paso a paso para canje en PSN, Xbox Live o Steam.",Regla de Negocio / RNF-22,
+ID,Historia de Usuario,Talla,Fibonacci
+HU-COM-7,"Como Comprador, quiero seleccionar entre envío a domicilio o retiro presencial en cualquiera de las 3 sucursales, para elegir la opción logística más conveniente.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Si elige retiro en tienda, muestra el stock disponible en cada una de las 3 sucursales físicas.",Requisito Funcional (RF-23),
+CA-2,"Si elige envío a domicilio, calcula el costo de flete según comuna mediante integración con courier.",Requisito Funcional (RF-25),
+CA-3,"Para retiro en tienda, el producto queda reservado para entrega en un máximo de 2 horas hábiles.",Regla de Negocio (RNF-11),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-INV-5,"Como Supervisor Logístico, quiero generar e imprimir etiquetas de despacho y código de barras en formato PDF, para agilizar el embalaje de pedidos web.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Genera PDF listo para impresión térmica con datos de remitente, destinatario y código de barras del pedido.",Requisito Funcional (RF-24),
+CA-2,Incluye resumen de empaque (packing slip) con el detalle de ítems que deben ir dentro de la caja.,Requisito Funcional (RF-23),
+CA-3,Procesa la generación del archivo PDF en menos de 1.0 segundo.,Requisito No Funcional (RNF-06),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-INV-6,"Como Supervisor Logístico, quiero integrar el sistema con las API de los couriers de despacho externos, para automatizar la cotización y generación de guías.",L,8
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Conecta vía API REST con Starken, Chilexpress y Blue Express para consultar tarifas dinámicas.",Requisito Funcional (RF-25),
+CA-2,Solicita automáticamente la recolección en bodega al cambiar el estado del lote a 'Listo para Despacho'.,Requisito No Funcional (RNF-11),
+CA-3,Maneja respuestas de fallback si la API de un courier se encuentra fuera de servicio.,Requisito No Funcional (RNF-21),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-INV-7,"Como Supervisor Logístico, quiero registrar el código de seguimiento de envío en cada pedido embalado, para notificar automáticamente al cliente.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Permite escaneo del código de barras de la guía del courier asociándolo a la orden web.,Requisito Funcional (RF-26),
+CA-2,Dispara el correo de confirmación de despacho al comprador con el enlace directo al rastreo.,Requisito Funcional (RF-27),
+CA-3,Cambia el estado del pedido a 'Despachado' actualizando la vista del cliente.,Requisito No Funcional (RNF-18),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-COM-8,"Como Comprador, quiero realizar el seguimiento en tiempo real del estado de mi despacho mediante un código de rastreo, para saber cuándo llegará mi paquete.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Notifica por correo el número de seguimiento (Tracking ID) cuando el paquete sea entregado al courier.,Requisito Funcional (RF-27),
+CA-2,"Despliega una línea de tiempo interactiva con los estados: Preparación, En Tránsito, En Reparto, Entregado.",Requisito Funcional (RF-26),
+CA-3,La información de seguimiento se actualiza vía API externa cada 30 minutos.,Requisito No Funcional (RNF-01),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-VEN-15,"Como Vendedor de Tienda, quiero validar y entregar órdenes de compra web con modalidad retiro en tienda, para completar la entrega presencial al comprador.",S,2
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Permite buscar la orden por código de retiro o RUT del cliente y verificar su pago en sistema.,Requisito Funcional (RF-23),
+CA-2,Exige la firma digital en pantalla o escaneo de cédula para confirmar la entrega del paquete.,Regla de Negocio / Retiro,
+CA-3,Actualiza el estado de la orden web a 'Entregado en Sucursal' de forma simultánea.,Requisito No Funcional (RNF-15),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-VEN-10,"Como Vendedor de Tienda, quiero solicitar traslados internos de mercadería desde otra sucursal, para satisfacer la demanda de un cliente local.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Crea una solicitud de traspaso indicando sucursal origen, destino y producto requerido.",Requisito Funcional (RF-6),
+CA-2,Notifica al Supervisor Logístico de la sucursal origen para aprobación de despacho.,Regla de Negocio / Traslados,
+CA-3,Mantiene la orden en estado 'En Tránsito Inter-Sucursal' hasta su recepción física.,Requisito No Funcional (RNF-14),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-INV-11,"Como Supervisor Logístico, quiero autorizar y coordinar la transferencia física de productos entre bodegas de sucursales, para balancear la disponibilidad geográfica.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Módulo de traspasos permite aprobar o rechazar solicitudes de traslado enviadas por vendedores.,Regla de Negocio / Traslado,
+CA-2,Imprime guía de despacho interna para el transportista de la empresa.,Requisito Funcional (RF-24),
+CA-3,Mantiene las unidades en estado 'En Tránsito' previniendo su venta durante el viaje.,Requisito No Funcional (RNF-14),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-COM-9,"Como Comprador, quiero consultar mi historial de compras y mi bóveda personal de claves digitales adquiridas, para acceder a mis juegos en cualquier momento.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Muestra la lista de todos los pedidos históricos ordenados cronológicamente con filtro por fecha.,Requisito Funcional (RF-17),
+CA-2,Permite revelar y copiar el código de licencias digitales adquiridas previa re-autenticación.,Requisito No Funcional (RNF-27 / RNF-22),
+CA-3,Permite re-descargar las boletas electrónicas de compras pasadas en formato PDF.,Requisito No Funcional (RNF-26),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-VEN-9,"Como Vendedor de Tienda, quiero procesar cambios y devoluciones de productos físicos según las políticas de garantía, para gestionar la satisfacción del cliente.",M,5
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Valida la boleta de compra original mediante escaneo del folio dentro del plazo legal de 10 días.,Regla de Negocio / Garantía,
+CA-2,Reingresa el producto físico al inventario de la tienda y emite nota de crédito automática.,Requisito Funcional (RF-7),
+CA-3,No permite devolución de juegos digitales cuyo código ya haya sido revelado o enviado.,Regla de Negocio / RNF-08,
+ID,Historia de Usuario,Talla,Fibonacci
+HU-COM-12,"Como Comprador, quiero publicar valoraciones y reseñas en los juegos que he comprado, para compartir mi opinión con la comunidad gamer.",S,2
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Solo permite calificar (1 a 5 estrellas) y comentar a usuarios con orden confirmada de dicho juego ('Comprador Verificado').,Regla de Negocio / Calidad,
+CA-2,Las reseñas pasan por un filtro automático de lenguaje inapropiado antes de su publicación.,Requisito No Funcional (RNF-29),
+CA-3,Calcula y muestra el promedio ponderado de estrellas en la ficha del producto instantáneamente.,Requisito Funcional (RF-20),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-COM-14,"Como Comprador, quiero solicitar una alerta por correo cuando un producto agotado vuelva a tener stock disponible, para comprarlo oportunamente.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Habilita el botón 'Avisarme cuando haya stock' en fichas de productos con inventario cero.,Requisito Funcional (RF-4),
+CA-2,Dispara correos automáticos en lote a los suscriptores cuando el stock sea > 0 en bodega web.,Requisito Funcional (RF-10),
+CA-3,Las alertas respetan el orden de registro de la lista de espera prioritariamente.,Requisito No Funcional (RNF-14),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-COM-15,"Como Comprador, quiero filtrar los productos por idioma de subtítulos y región de activación de la consola, para evitar comprar contenido incompatible.",XS,2
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Permite filtrar juegos digitales por Región (Global, EE.UU., LATAM, Europa).",Requisito Funcional (RF-3),
+CA-2,Muestra una advertencia destacada en rojo si la región del juego no coincide con la región de la cuenta del usuario.,Regla de Negocio / Usabilidad,
+CA-3,Garantiza la precisión de la información técnica del catálogo en un 100%.,Requisito No Funcional (RNF-36),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-INV-9,"Como Supervisor Logístico, quiero registrar mermas, productos dañados o extravíos con su justificación técnica, para mantener la transparencia del inventario real.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Formulario de ajuste exige seleccionar motivo (Merma, Daño, Hurto, Error Conteo) y adjuntar evidencia.",Requisito Funcional (RF-9),
+CA-2,Requiere aprobación digital del Administrador para ajustes superiores a 5 unidades o $100.000.,Regla de Negocio / Control,
+CA-3,Refleja la baja de inventario inmediatamente en la disponibilidad para venta.,Requisito No Funcional (RNF-24),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-INV-8,"Como Supervisor Logístico, quiero ejecutar el proceso de conciliación nocturna entre stock físico, reservado y en tránsito, para corregir descuadres de inventario.",M,5
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Proceso Batch automático se ejecuta a las 23:59 hrs comparando registros contables e inventarios.,Requisito No Funcional (RNF-09),
+CA-2,Identifica desviaciones entre reservas expiradas no liberadas y corrige saldos automáticamente.,Requisito No Funcional (RNF-09),
+CA-3,Genera informe de auditoría con las variaciones detectadas enviándolo a Logística y Administración.,Requisito No Funcional (RNF-08),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-INV-10,"Como Supervisor Logístico, quiero exportar e importar reportes detallados de rotación de inventarios en formatos CSV/JSON/XML, para respaldar la toma de decisiones.",M,5
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Exporta datos completos de stock, entradas, salidas y días de inventario en < 3 segundos.",Requisito No Funcional (RNF-12),
+CA-2,"Permite filtrado de exportación por rango de fechas, categoría de juego y sucursal.",Requisito No Funcional (RNF-35),
+CA-3,El archivo generado cumple con estándares de encriptación para resguardo de información comercial.,Requisito No Funcional (RNF-29),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-COM-10,"Como Comprador, quiero suscribirme o desuscribirme al boletín promocional y alertas de preventas, para recibir ofertas exclusivas según mi preferencia.",XS,1
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Incluye casilla opt-in en el registro y en el perfil de usuario para gestionar suscripciones.,Requisito Funcional (RF-28),
+CA-2,Cada correo publicitario enviado incluye un enlace funcional de desuscripción en un solo clic.,Requisito Funcional (RF-30),
+CA-3,Sincroniza el estado de preferencia promocional en la base de datos en tiempo real.,Requisito No Funcional (RNF-38),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-VEN-11,"Como Vendedor de Tienda, quiero programar el envío de boletines de ofertas locales a clientes de mi sucursal, para promocionar eventos y liquidaciones.",M,5
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Permite seleccionar plantilla de oferta local y grupo de clientes adscritos a dicha tienda.,Requisito Funcional (RF-29),
+CA-2,Envía la campaña publicitaria respetando la lista de desuscritos (opt-out).,Requisito Funcional (RF-28),
+CA-3,Proporciona métricas de apertura y clics de la campaña enviada.,Requisito No Funcional (RNF-38),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-VEN-6,"Como Vendedor de Tienda, quiero visualizar alertas automáticas en pantalla cuando un producto alcance su nivel de stock crítico, para solicitar reabastecimiento a bodega.",S,2
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Muestra un indicador de color amarillo/rojo en el POS cuando el stock local sea <= 3 unidades.,Requisito Funcional (RF-10),
+CA-2,Permite generar una solicitud de reposición interna a bodega central con un clic.,Requisito No Funcional (RNF-14),
+CA-3,Notifica al Supervisor Logístico de la tienda sobre el bajo stock de dicho ítem.,Requisito No Funcional (RNF-02),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-ADM-4,"Como Administrador de Negocio, quiero revisar la bitácora central de auditoría del sistema (log de eventos), para supervisar las acciones críticas realizadas por los usuarios internos.",M,5
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Despliega tabla de auditoría con filtros por Fecha, Usuario, Acción, Módulo y Dirección IP.",Requisito No Funcional (RNF-24),
+CA-2,"Registra obligatoriamente eventos de: carga de claves, ajustes de stock, cambios de permisos y cierres de caja.",Requisito Funcional (RF-21 / RNF-08),
+CA-3,Los registros de la bitácora son inalterables y no pueden ser borrados ni modificados por ningún rol.,Requisito No Funcional (RNF-40),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-INV-12,"Como Supervisor Logístico, quiero consultar la bitácora inalterable de despacho de códigos digitales por cliente y orden, para resolver disputas o reclamos por claves no funcionales.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Muestra registro de fecha, hora, IP, mail y código de transacción exacto de cada entrega digital.",Requisito Funcional (RF-21 / RF-22),
+CA-2,Permite verificar mediante API externa con el distribuidor si la clave ya fue activada.,Requisito No Funcional (RNF-24),
+CA-3,Almacena los logs de claves encriptados en almacenamiento WORM (Write Once Read Many).,Requisito No Funcional (RNF-13),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-ADM-8,"Como Administrador de Negocio, quiero gestionar las llaves API y credenciales de integración con pasarelas de pago y servicios externos, para mantener activa la cobranza digital.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Panel de configuración permite ingresar y probar llaves secretas de Webpay, MercadoPago y Couriers.",Requisito No Funcional (RNF-32),
+CA-2,Almacena las llaves secretas encriptadas en bóveda de claves (Key Vault) con acceso restringido.,Requisito No Funcional (RNF-10),
+CA-3,Proporciona botón de prueba de conexión ('Test Connection') notificando el estado del servicio.,Requisito No Funcional (RNF-23),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-ADM-10,"Como Administrador de Negocio, quiero visualizar un panel ejecutivo de KPIs de seguridad, intentos de vulneración y disponibilidad de infraestructura, para tomar decisiones de riesgo.",M,5
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,"Dashboard en tiempo real muestra disponibilidad de servidores (Uptime %), latencia media e intentos fallidos de login.",Requisito No Funcional (RNF-45),
+CA-2,Despliega mapa de calor con alertas de seguridad e intentos de inyección SQL o fuerza bruta.,Requisito No Funcional (RNF-01 / RNF-02),
+CA-3,Permite configurar alertas críticas al teléfono móvil ante caídas del sistema principal.,Requisito No Funcional (RNF-20),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-ADM-11,"Como Administrador de Negocio, quiero establecer las políticas de retención, respaldo y purga de logs y datos históricos, para cumplir con normativas legales y de almacenamiento.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Configura la retención de respaldos automáticos diarios por un periodo mínimo de 5 años.,Requisito No Funcional (RNF-24),
+CA-2,Programa la purga de logs secundarios no sensibles mayores a 365 días para liberar almacenamiento.,Requisito No Funcional (RNF-35),
+CA-3,Garantiza que la información tributaria y transaccional se mantenga inalterada en almacenamiento seguro.,Requisito No Funcional (RNF-40),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-ADM-14,"Como Administrador de Negocio, quiero publicar y actualizar los términos, condiciones y políticas de privacidad del comercio, para garantizar el cumplimiento normativo.",XS,1
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Editor de texto enriquecido para modificar los términos legales desplegados en el pie de página de la web.,Requisito Funcional (RF-1),
+CA-2,Registra versión del documento y exige re-aceptación a compradores registrados si hay cambios sustanciales.,Requisito No Funcional (RNF-06),
+CA-3,Mantiene archivo con el historial de versiones de los términos y condiciones pasados.,Requisito No Funcional (RNF-26),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-ADM-13,"Como Administrador de Negocio, quiero definir y autorizar los límites de compra y presupuestos de emergencia asignados a Supervisores, para controlar el gasto operativo.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Permite fijar el monto máximo en dinero que un Supervisor Logístico puede autorizar en compras sin VoBo.,Regla de Negocio / Presupuesto,
+CA-2,Notifica al Administrador cuando una solicitud de compra supere el límite configurado para aprobación manual.,Requisito No Funcional (RNF-39),
+CA-3,Genera reporte mensual de compras de emergencia autorizadas por usuario.,Requisito No Funcional (RNF-24),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-INV-14,"Como Supervisor Logístico, quiero configurar instrucciones especiales de empaque para ediciones de coleccionista o frágiles, para asegurar la protección del producto durante el transporte.",XS,2
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Permite marcar SKU físicos con la etiqueta 'Empaque Especial / Frágil'.,Requisito Funcional (RF-1),
+CA-2,Imprime automáticamente advertencia de manipulación en la etiqueta de despacho.,Requisito Funcional (RF-24),
+CA-3,Suma costo adicional por embalaje especial en el cálculo del flete en checkout.,Requisito No Funcional (RNF-25),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-INV-15,"Como Supervisor Logístico, quiero monitorear el estado operativo y tiempos de respuesta de las APIs de couriers integrados, para detectar caídas del servicio logístico.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Panel de salud de integraciones muestra latencia y tasa de éxito de solicitudes a Starken/Chilexpress.,Requisito No Funcional (RNF-45),
+CA-2,Desactiva temporalmente un courier si su API no responde en 3 intentos consecutivos.,Requisito No Funcional (RNF-21),
+CA-3,Conmuta automáticamente los despachos al courier alternativo disponible.,Requisito No Funcional (RNF-03),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-VEN-7,"Como Vendedor de Tienda, quiero operar la caja registradora en modo offline ante caídas de internet, para no interrumpir la atención al cliente presencial.",L,8
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Almacena transacciones locales en SQLite del navegador/POS cuando se detecte pérdida de red.,Requisito No Funcional (RNF-19),
+CA-2,Sincroniza automáticamente todas las ventas acumuladas al restablecer la conexión a internet.,Requisito No Funcional (RNF-19),
+CA-3,Bloquea la venta de claves digitales en modo offline para prevenir asignación duplicada de licencias.,Regla de Negocio / RNF-09,
+ID,Historia de Usuario,Talla,Fibonacci
+HU-ADM-12,"Como Administrador de Negocio, quiero autorizar e iniciar los protocolos de respaldo y recuperación ante desastres (DRP), para asegurar la continuidad operacional ante contingencias.",M,5
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Permite ejecutar la restauración completa del sistema desde una copia de respaldo encriptada.,Requisito No Funcional (RNF-03),
+CA-2,El tiempo objetivo de recuperación (RTO) es menor a 2 horas y la pérdida de datos (RPO) es menor a 15 minutos.,Requisito No Funcional (RNF-17),
+CA-3,Requiere autenticación de dos factores y doble confirmación para ejecutar cualquier restauración masiva.,Requisito No Funcional (RNF-16),
+ID,Historia de Usuario,Talla,Fibonacci
+HU-ADM-15,"Como Administrador de Negocio, quiero supervisar las reglas de autoescalado y costos operativos del servidor en la nube durante eventos de alta demanda (CyberDay, lanzamientos), para optimizar el gasto de TI.",S,3
+N° Criterio,Criterio de Aceptacion,RNF y RF,
+CA-1,Configura parámetros de escalado automático de instancias AWS/GCP al superar el 70% de CPU.,Requisito No Funcional (RNF-41),
+CA-2,Establece tope de presupuesto diario de infraestructura notificando si el gasto proyectado se excede.,Requisito No Funcional (RNF-28),
+CA-3,Garantiza soporte para más de 10.000 usuarios concurrentes sin degradar tiempos de respuesta.,Requisito No Funcional (RNF-34),

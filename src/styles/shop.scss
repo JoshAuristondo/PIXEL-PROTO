@@ -1,0 +1,482 @@
+/* Tienda (comprador): catálogo, ficha, carrito, checkout, cuenta, seguimiento */
+
+.cover {
+    display: block;
+    width: 100%;
+    height: auto;
+    image-rendering: pixelated;
+}
+
+/* ---------- catálogo ---------- */
+
+.catalog {
+    display: grid;
+    grid-template-columns: 270px 1fr;
+    gap: 22px;
+    align-items: start;
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
+
+    &__filters {
+        position: sticky;
+        top: 80px;
+
+        @media (max-width: 900px) {
+            position: static;
+        }
+    }
+
+    &__chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    &__range {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    &__toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+        gap: 16px;
+    }
+}
+
+.pcard {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border-line);
+    background: color-mix(in srgb, var(--color-secondary) 82%, transparent);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+        border-color: var(--color-contrast);
+        box-shadow: 0 0 20px rgba(255, 85, 0, 0.15);
+        transform: translateY(-3px);
+    }
+
+    &__media {
+        display: block;
+        text-decoration: none;
+        position: relative;
+        border-bottom: 1px solid var(--color-border-line);
+        overflow: hidden;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px;
+        flex: 1;
+    }
+
+    &__title {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.88rem;
+        font-weight: 700;
+        line-height: 1.3;
+        color: var(--color-text);
+        text-decoration: none;
+        min-height: 2.3em;
+
+        &:hover { color: var(--color-contrast); }
+    }
+
+    &__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    &__price {
+        font-family: "Share Tech Mono", monospace;
+        font-size: 1.25rem;
+        margin-top: auto;
+    }
+
+    &--out .cover { filter: grayscale(0.85); opacity: 0.7; }
+}
+
+/* ---------- ficha de producto ---------- */
+
+.product {
+    display: grid;
+    grid-template-columns: minmax(220px, 340px) 1fr;
+    gap: 26px;
+    align-items: start;
+
+    @media (max-width: 800px) {
+        grid-template-columns: 1fr;
+    }
+
+    &__cover {
+        border: 1px solid var(--color-border-line-hover);
+        max-width: 340px;
+        width: 100%;
+    }
+
+    &__price {
+        font-family: "Share Tech Mono", monospace;
+        font-size: 2.2rem;
+        color: var(--color-contrast);
+    }
+
+    &__qty {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid var(--color-border-line);
+
+        button {
+            width: 32px;
+            height: 34px;
+            background: transparent;
+            border: none;
+            color: var(--color-text);
+            cursor: pointer;
+            font-size: 1.1rem;
+            &:hover { background: var(--color-contrast); color: #fff; }
+        }
+
+        span { min-width: 34px; text-align: center; }
+    }
+}
+
+.stock-matrix {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+
+    &__cell {
+        border: 1px solid var(--color-border-line);
+        padding: 10px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        strong { font-family: "Share Tech Mono", monospace; font-size: 1.5rem; }
+        span { font-size: 0.78rem; opacity: 0.7; }
+
+        &--ok strong { color: #2e9e5b; }
+        &--warn strong { color: #d99a00; }
+        &--err strong { color: #e53935; }
+    }
+}
+
+.review {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-border-line);
+}
+
+.star-input {
+    display: inline-flex;
+    gap: 4px;
+
+    button {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--color-text);
+        opacity: 0.3;
+
+        &.on { color: var(--color-contrast); opacity: 1; }
+    }
+}
+
+/* ---------- carrito / checkout ---------- */
+
+.cart {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 22px;
+    align-items: start;
+
+    @media (max-width: 950px) {
+        grid-template-columns: 1fr;
+    }
+
+    &__line {
+        display: grid;
+        grid-template-columns: 74px 1fr auto;
+        gap: 14px;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--color-border-line);
+
+        .cover { border: 1px solid var(--color-border-line); }
+
+        @media (max-width: 560px) {
+            grid-template-columns: 60px 1fr;
+            > :last-child { grid-column: 1 / -1; }
+        }
+    }
+
+    &__sum {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+
+        &--total {
+            font-family: "Share Tech Mono", monospace;
+            font-size: 1.5rem;
+            border-top: 1px dashed var(--color-border-line-hover);
+            padding-top: 10px;
+        }
+    }
+
+    &__timer {
+        font-family: "Share Tech Mono", monospace;
+        font-size: 1.4rem;
+        color: var(--color-contrast);
+    }
+}
+
+.choice {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+
+    &__item {
+        border: 1px solid var(--color-border-line);
+        padding: 12px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        background: transparent;
+        color: var(--color-text);
+        font-family: inherit;
+        text-align: left;
+
+        &:hover { border-color: var(--color-border-line-hover); }
+
+        &--on {
+            border-color: var(--color-contrast);
+            background: color-mix(in srgb, var(--color-contrast) 10%, transparent);
+        }
+    }
+}
+
+.gateway {
+    border: 1px solid var(--color-border-line-hover);
+    padding: 40px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+
+    .loader { width: 40px; }
+}
+
+/* ---------- auth ---------- */
+
+.auth {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    &__demo {
+        display: grid;
+        gap: 6px;
+
+        button {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 8px 10px;
+            border: 1px solid var(--color-border-line);
+            background: transparent;
+            color: var(--color-text);
+            font-family: "Inconsolata", monospace;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-align: left;
+
+            &:hover { border-color: var(--color-contrast); }
+        }
+    }
+
+    &__strength {
+        display: flex;
+        gap: 4px;
+
+        span {
+            flex: 1;
+            height: 5px;
+            background: var(--color-border-line);
+
+            &.on-1 { background: #e53935; }
+            &.on-2 { background: #d99a00; }
+            &.on-3 { background: #8bc34a; }
+            &.on-4 { background: #2e9e5b; }
+        }
+    }
+}
+
+/* ---------- seguimiento ---------- */
+
+.timeline {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    &__step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 6px;
+        position: relative;
+        opacity: 0.45;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 14px;
+            left: -50%;
+            width: 100%;
+            height: 3px;
+            background: var(--color-border-line-hover);
+            z-index: 0;
+
+            @media (max-width: 640px) { display: none; }
+        }
+
+        &:first-child::before { display: none; }
+
+        &--done { opacity: 1; &::before { background: var(--color-contrast); } }
+        &--now .timeline__dot { box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-contrast) 30%, transparent); }
+    }
+
+    &__dot {
+        position: relative;
+        z-index: 1;
+        width: 30px;
+        height: 30px;
+        border: 2px solid var(--color-contrast);
+        background: var(--color-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+
+        .timeline__step--done & { background: var(--color-contrast); color: #fff; }
+    }
+
+    &__label { font-family: "Share Tech Mono", monospace; }
+    &__time { font-size: 0.75rem; opacity: 0.7; }
+}
+
+/* ---------- cuenta / bóveda ---------- */
+
+.vault-key {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border: 1px solid var(--color-border-line);
+
+    &__code {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 1.1rem;
+        letter-spacing: 0.1em;
+    }
+}
+
+.guide {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    text-align: center;
+
+    &__step {
+        font-family: "Share Tech Mono", monospace;
+        font-size: 4rem;
+        color: var(--color-contrast);
+        line-height: 1;
+    }
+
+    &__dots { display: flex; gap: 6px; span { width: 10px; height: 10px; background: var(--color-border-line-hover); &.on { background: var(--color-contrast); } } }
+}
+
+.outbox {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-border-line);
+
+    pre { font-family: "JetBrains Mono", monospace; font-size: 0.82rem; white-space: pre-wrap; opacity: 0.85; }
+}
+
+/* ---------- navbar: sesión y carrito ---------- */
+
+.nav-cart {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    padding: 0 10px;
+    gap: 6px;
+    border: 1px solid var(--color-border-line);
+    background: var(--color-secondary);
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: "Inconsolata", monospace;
+    font-size: 12px;
+
+    &:hover { background: var(--color-contrast); color: var(--color-primary); border-color: var(--color-border-line-hover); }
+
+    &__count {
+        background: var(--color-contrast);
+        color: #fff;
+        font-size: 10px;
+        min-width: 16px;
+        height: 16px;
+        padding: 0 3px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.nav-user {
+    font-family: "Inconsolata", monospace;
+    font-size: 12px;
+    color: var(--color-text);
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @media (max-width: 640px) { display: none; }
+}

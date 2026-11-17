@@ -13,6 +13,17 @@ import Locations from './routes/locations';
 import Contact from './routes/contact';
 import Catalog from './routes/catalog';
 import Policy from './routes/policy';
+import Product from './routes/product';
+import Cart from './routes/cart';
+import Checkout from './routes/checkout';
+import Confirmation from './routes/confirmation';
+import Login from './routes/login';
+import Signup from './routes/signup';
+import Account from './routes/account';
+import Tracking from './routes/tracking';
+import Outbox from './routes/outbox';
+import AdminRoot from './routes/admin/admin_root';
+import Demo from './routes/demo';
 
 
 
@@ -46,6 +57,21 @@ function App() {
           <Route path={"/locations"} component={Locations} />
           <Route path={"/about"} component={About} />
           <Route path={"/contact"} component={Contact} />
+
+          {/* Tienda */}
+          <Route path={"/product/:id"} component={Product} />
+          <Route path={"/cart"} component={Cart} />
+          <Route path={"/checkout"} component={Checkout} />
+          <Route path={"/confirmation/:id"} component={Confirmation} />
+          <Route path={"/login"} component={Login} />
+          <Route path={"/signup"} component={Signup} />
+          <Route path={"/account"} component={Account} />
+          <Route path={"/tracking"} component={Tracking} />
+          <Route path={"/outbox"} component={Outbox} />
+          <Route path={"/demo"} component={Demo} />
+
+          {/* Panel interno (POS, logística, inventario, claves, auditoría…) */}
+          <Route path={"/admin/:rest*"} component={AdminRoot} />
 
           {/* Policy */}
           <Route path={"/policy/:type"} component={Policy} />

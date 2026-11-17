@@ -154,7 +154,7 @@ const InternalLink = ({ name, to }) => {
 const ExternalLink = ({ name, to }) => {
     return (
         <li className="footer__li">
-            <a className="footer__link" href={to}>
+            <a className="footer__link" href={to} target="_blank">
                 {name}
             </a>
         </li>
